@@ -23,16 +23,20 @@ class LogicCalc(object):
         comps = 1
         while len(stack) > 0:
             new = '0'
-            if stack[0] == '^' and parse[parse.index(stack[0]) - 1] == parse[parse.index(stack[0]) + 1]:
+            if (stack[0] == '^' and 
+                parse[parse.index(stack[0]) - 1] == parse[parse.index(stack[0]) + 1]):
                 new = '1'
             if stack[0] == '|':
-                if parse[parse.index(stack[0]) - 1] == '1' or parse[parse.index(stack[0]) + 1] == '1':
+                if (parse[parse.index(stack[0]) - 1] == '1' or 
+                    parse[parse.index(stack[0]) + 1] == '1'):
                     new = '1'
-            if stack[0] == '*' and parse[parse.index(stack[0]) -1] == '1' and parse[parse.index(stack[0]) + 1] == '1':
+            if (stack[0] == '*' and parse[parse.index(stack[0]) -1] == '1' and 
+                parse[parse.index(stack[0]) + 1] == '1'):
                 new = '1'
             if stack[0] == '!' and parse[parse.index(stack[0]) - 1] == '1':
                 new = '1'
-            print '%d Evaluation %s %s %s = %s' % (comps, parse[parse.index(stack[0]) - 1], stack[0], parse[parse.index(stack[0]) + 1], new)
+            print '%d Evaluation %s %s %s = %s' % (comps, parse[parse.index(stack[0]) - 1], 
+                                                   stack[0], parse[parse.index(stack[0]) + 1], new)
             parse[parse.index(stack[0]) - 1] = new
             pos = parse.index(stack[0])
             parse.pop(pos)
@@ -43,6 +47,12 @@ class LogicCalc(object):
         print 'Outcome... ',parse[0]
 
 
-logcal = LogicCalc()
-print sys.argv[1]
-logcal.boolEval(sys.argv[1])
+if __name__ == '__main__':
+    logcal = LogicCalc()
+    try:
+        data = sys.argv[1]
+    except IndexError:
+        print 'No input was given'
+        return
+    print data
+    logcal.boolEval(data)
