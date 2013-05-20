@@ -51,8 +51,7 @@ if __name__ == '__main__':
     logcal = LogicCalc()
     try:
         data = sys.argv[1]
+        print data
+        logcal.boolEval(data)
     except IndexError:
         print 'No input was given'
-        return
-    print data
-    logcal.boolEval(data)
