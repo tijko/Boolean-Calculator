@@ -13,6 +13,7 @@
 
 import sys
 
+
 class LogicCalc(object):
 
     def boolEval(self, statement):
@@ -21,7 +22,7 @@ class LogicCalc(object):
         parse = [i for i in statement if not i.isspace()]
         stack = sorted(stack, key=op.get)
         comps = 1
-        while len(stack) > 0:
+        while stack:
             new = '0'
             if (stack[0] == '^' and 
                 parse[parse.index(stack[0]) - 1] == parse[parse.index(stack[0]) + 1]):
@@ -43,8 +44,8 @@ class LogicCalc(object):
             parse.pop(pos)
             stack.pop(0)
             comps += 1
-            print 'Evaluation statement is now: %s' % ''.join([i for i in parse])
-        print 'Outcome... ',parse[0]
+            print 'Evaluation statement is now: %s' % ''.join(i for i in parse)
+        print 'Outcome... %s' % parse[0]
 
 
 if __name__ == '__main__':
